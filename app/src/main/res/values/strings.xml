@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">WaterTracker</string>
+    <string name="app_name">წყლის ტრეკერი</string>
+
+    <string name="nav_home">დღევანდელი</string>
+    <string name="nav_history">ისტორია</string>
+    <string name="nav_settings">პარამეტრები</string>
+
+    <string name="notification_channel_name">წყლის შეხსენება</string>
+    <string name="notification_channel_description">პერიოდული შეხსენებები წყლის დასალევად</string>
+    <string name="notification_title">დროა დალიო წყალი 💧</string>
+    <string name="notification_text">არ დაგავიწყდეს დღიური მიზნის შესრულება</string>
 </resources>
