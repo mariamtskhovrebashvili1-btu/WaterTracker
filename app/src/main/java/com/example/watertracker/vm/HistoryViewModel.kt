@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.watertracker.data.DailyTotal
+import com.example.watertracker.data.UserPreferencesRepository
 import com.example.watertracker.data.WaterLog
 import com.example.watertracker.data.WaterRepository
 import com.example.watertracker.di.AppContainer
@@ -15,10 +16,16 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class HistoryViewModel(private val repository: WaterRepository) : ViewModel() {
+class HistoryViewModel(
+    private val repository: WaterRepository,
+    preferencesRepository: UserPreferencesRepository
+) : ViewModel() {
 
     val dailyTotals: StateFlow<List<DailyTotal>> = repository.getAllGroupedByDate()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
+
+    val goalMl: StateFlow<Int> = preferencesRepository.dailyGoalMl
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), UserPreferencesRepository.DEFAULT_GOAL_ML)
 
     private val _expandedDate = MutableStateFlow<String?>(null)
     val expandedDate: StateFlow<String?> = _expandedDate
@@ -38,7 +45,7 @@ class HistoryViewModel(private val repository: WaterRepository) : ViewModel() {
 
     companion object {
         fun factory(container: AppContainer) = viewModelFactory {
-            initializer { HistoryViewModel(container.waterRepository) }
+            initializer { HistoryViewModel(container.waterRepository, container.userPreferencesRepository) }
         }
     }
 }
