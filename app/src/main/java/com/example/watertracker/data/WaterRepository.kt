@@ -11,6 +11,8 @@ class WaterRepository(private val dao: WaterLogDao) {
 
     fun getAllGroupedByDate(): Flow<List<DailyTotal>> = dao.getAllGroupedByDate()
 
+    fun getDailyTotalsSince(sinceDate: String): Flow<List<DailyTotal>> = dao.getDailyTotalsSince(sinceDate)
+
     suspend fun addWater(amountMl: Int) {
         val now = System.currentTimeMillis()
         dao.insert(WaterLog(amount = amountMl, timestamp = now, date = todayDateString()))

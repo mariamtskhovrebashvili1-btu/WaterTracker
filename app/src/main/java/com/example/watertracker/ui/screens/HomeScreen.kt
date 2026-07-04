@@ -51,11 +51,6 @@ import kotlin.math.roundToInt
 
 private val quickAddAmounts = listOf(100, 200, 300, 500)
 
-// 💡 HomeScreen-ს არ აქვს @Preview: მას სჭირდება რეალური AppContainer (Room ბაზა +
-// Context), რომელსაც Compose Preview-ს ტულინგი პირდაპირ ვერ უზრუნველყოფს.
-// ამის ნაცვლად ქვემოთ დამოუკიდებელი (stateless) ქვე-კომპონენტებია
-// (WaveContent, CelebrationBanner) preview-ებით — ამ პრინციპს ჰქვია
-// "state hoisting": UI-ლოგიკა გამოტანილია მონაცემებზე დამოკიდებულებისგან.
 @Composable
 fun HomeScreen(
     container: AppContainer,

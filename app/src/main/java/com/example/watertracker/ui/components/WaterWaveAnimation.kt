@@ -31,11 +31,6 @@ import com.example.watertracker.ui.theme.WaterTrackerTheme
 import kotlin.math.PI
 import kotlin.math.sin
 
-/**
- * A circular indicator that fills with an animated, wavy body of water as [progress] rises.
- * The wave surface oscillates continuously via [rememberInfiniteTransition]; the water level
- * itself animates towards [progress] with a gentle spring whenever it changes.
- */
 @Composable
 fun WaterWaveAnimation(
     progress: Float,
@@ -93,9 +88,6 @@ fun WaterWaveAnimation(
                 addOval(Rect(center = center, radius = radius))
             }
 
-            // Hand-drawn radial glow instead of a system elevation shadow: CircleShape
-            // outline shadows fall back to a polygon approximation on some software
-            // renderers, which draws a visible octagon instead of a smooth circle.
             val shadowCenter = Offset(center.x, center.y + 8.dp.toPx())
             val shadowRadius = radius + 12.dp.toPx()
             drawCircle(

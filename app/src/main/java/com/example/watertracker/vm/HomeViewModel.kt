@@ -13,22 +13,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-// =========================================================================
-// ლოგიკის ფენა: HomeViewModel (The Brain of the Home Screen)
-// =========================================================================
-//
-// 💡 რატომ combine()?
-// HomeScreen-ს ერთდროულად სჭირდება ორი დამოუკიდებელი წყარო: დღევანდელი
-// ჩანაწერები (Room) და დღიური მიზანი (DataStore). combine() აერთიანებს ორივე
-// Flow-ს ერთში — როცა ერთ-ერთი მათგანი შეიცვლება, ორივე ისევ გაერთიანდება
-// და UI-მდე ერთი მზა HomeUiState მოაღწევს.
-//
-// 💡 რატომ stateIn()?
-// Flow თავისთავად მხოლოდ "მომავალ მოვლენებზე" საუბრობს. stateIn() მას
-// გარდაქმნის StateFlow-დ, რომელსაც ყოველთვის აქვს მიმდინარე მნიშვნელობა —
-// ეს საჭიროა, რომ Compose-მა collectAsState()-ით პირდაპირ წაიკითხოს.
-// =========================================================================
-
 data class HomeUiState(
     val consumedMl: Int = 0,
     val goalMl: Int = UserPreferencesRepository.DEFAULT_GOAL_ML,
@@ -56,11 +40,6 @@ class HomeViewModel(
         initialValue = HomeUiState()
     )
 
-    /**
-     * იძახება, როცა მომხმარებელი "+100"/"+200"... ღილაკზე აჭერს.
-     * UI-მ არ იცის (და არც უნდა იცოდეს) როგორ ინახება ეს ბაზაში — მხოლოდ
-     * აცნობებს ViewModel-ს მომხმარებლის განზრახვას.
-     */
     fun addWater(amountMl: Int) {
         viewModelScope.launch {
             waterRepository.addWater(amountMl)
@@ -68,9 +47,6 @@ class HomeViewModel(
     }
 
     companion object {
-        // 💡 factory კონსტრუქტორის ნაცვლად: HomeViewModel-ს სჭირდება Repository-ები,
-        // ამიტომ ვერ გამოვიყენებთ პარამეტრების გარეშე viewModel()-ს (`vm: X = viewModel()`) —
-        // viewModelFactory ეუბნება სისტემას საიდან უნდა აიღოს ეს დამოკიდებულებები.
         fun factory(container: AppContainer) = viewModelFactory {
             initializer {
                 HomeViewModel(container.waterRepository, container.userPreferencesRepository)

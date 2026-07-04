@@ -27,3 +27,14 @@ fun String.toDisplayDate(): String {
         }
     }
 }
+
+fun daysAgoDateString(daysAgo: Int): String = LocalDate.now().minusDays(daysAgo.toLong()).format(ISO_DATE_FORMATTER)
+
+private val shortWeekdayLabels = listOf("ორშ", "სამ", "ოთხ", "ხუთ", "პარ", "შაბ", "კვ")
+
+fun String.toShortWeekdayLabel(): String {
+    val date = LocalDate.parse(this, ISO_DATE_FORMATTER)
+    return shortWeekdayLabels[date.dayOfWeek.value - 1]
+}
+
+fun String.toDayOfMonthLabel(): String = LocalDate.parse(this, ISO_DATE_FORMATTER).dayOfMonth.toString()

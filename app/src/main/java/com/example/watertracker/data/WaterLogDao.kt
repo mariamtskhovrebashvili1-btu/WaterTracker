@@ -20,4 +20,7 @@ interface WaterLogDao {
 
     @Query("SELECT date, SUM(amount) as total FROM water_logs GROUP BY date ORDER BY date DESC")
     fun getAllGroupedByDate(): Flow<List<DailyTotal>>
+
+    @Query("SELECT date, SUM(amount) as total FROM water_logs WHERE date >= :sinceDate GROUP BY date ORDER BY date ASC")
+    fun getDailyTotalsSince(sinceDate: String): Flow<List<DailyTotal>>
 }

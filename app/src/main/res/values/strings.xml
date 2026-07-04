@@ -3,6 +3,7 @@
 
     <string name="nav_home">დღევანდელი</string>
     <string name="nav_history">ისტორია</string>
+    <string name="nav_statistics">სტატისტიკა</string>
     <string name="nav_settings">პარამეტრები</string>
 
     <string name="notification_channel_name">წყლის შეხსენება</string>

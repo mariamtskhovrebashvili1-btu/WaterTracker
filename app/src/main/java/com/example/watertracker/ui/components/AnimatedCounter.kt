@@ -21,10 +21,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.example.watertracker.ui.theme.WaterTrackerTheme
 
-/**
- * Animates [targetValue] towards its new value and renders it with [AutoResizeText] so the
- * counter can never overflow its container, no matter how large the number gets.
- */
 @Composable
 fun AnimatedCounter(
     targetValue: Int,
@@ -50,10 +46,6 @@ fun AnimatedCounter(
     )
 }
 
-/**
- * A single-line [Text] that shrinks its font size until the string fits within the available
- * width, so long numbers/labels never clip or wrap awkwardly.
- */
 @Composable
 fun AutoResizeText(
     text: String,
