@@ -12,7 +12,9 @@ class ReminderScheduler(private val context: Context) {
         val effectiveInterval = intervalMinutes.coerceAtLeast(MIN_INTERVAL_MINUTES)
         val request = PeriodicWorkRequestBuilder<ReminderWorker>(
             effectiveInterval.toLong(), TimeUnit.MINUTES
-        ).build()
+        )
+            .setInitialDelay(effectiveInterval.toLong(), TimeUnit.MINUTES)
+            .build()
 
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
             WORK_NAME,
