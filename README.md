@@ -1,3 +1,6 @@
+[water_tracker.webm](https://github.com/user-attachments/assets/3d0b0ed1-5595-4e62-8bcc-6a0064f1948d)
+
+
 # Water Tracker (წყლის ტრეკერი)
 
 A modern Android app for tracking daily water intake, built entirely with **Kotlin** and **Jetpack Compose** — no XML layouts, no `findViewById`.
