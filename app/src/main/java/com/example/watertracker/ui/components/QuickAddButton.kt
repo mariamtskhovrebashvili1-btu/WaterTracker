@@ -23,8 +23,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.watertracker.ui.theme.WaterTrackerTheme
 
 private val PillShape = RoundedCornerShape(50)
 
@@ -74,5 +76,13 @@ fun QuickAddButton(
             minFontSize = 12.sp,
             textAlign = TextAlign.Center
         )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun QuickAddButtonPreview() {
+    WaterTrackerTheme {
+        QuickAddButton(label = "+300", onClick = {})
     }
 }

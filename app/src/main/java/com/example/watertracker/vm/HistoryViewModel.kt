@@ -1,4 +1,4 @@
-package com.example.watertracker.ui.history
+package com.example.watertracker.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,6 +20,8 @@ class HistoryViewModel(private val repository: WaterRepository) : ViewModel() {
     val dailyTotals: StateFlow<List<DailyTotal>> = repository.getAllGroupedByDate()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
+    // 🔴 PRIVATE MUTABLE + 🟢 PUBLIC READ-ONLY: მხოლოდ ეს ViewModel-ი ცვლის რომელი
+    // დღეა გახსნილი (_expandedDate); UI მხოლოდ კითხულობს (expandedDate).
     private val _expandedDate = MutableStateFlow<String?>(null)
     val expandedDate: StateFlow<String?> = _expandedDate
 

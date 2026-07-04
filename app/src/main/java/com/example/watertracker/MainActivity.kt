@@ -9,7 +9,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import com.example.watertracker.ui.navigation.WaterTrackerNavGraph
 import com.example.watertracker.ui.theme.WaterTrackerTheme
 
 class MainActivity : ComponentActivity() {

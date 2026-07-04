@@ -1,4 +1,4 @@
-package com.example.watertracker.ui.home
+package com.example.watertracker.ui.screens
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -36,6 +36,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -44,10 +45,17 @@ import com.example.watertracker.ui.components.AnimatedCounter
 import com.example.watertracker.ui.components.AutoResizeText
 import com.example.watertracker.ui.components.QuickAddButton
 import com.example.watertracker.ui.components.WaterWaveAnimation
+import com.example.watertracker.ui.theme.WaterTrackerTheme
+import com.example.watertracker.vm.HomeViewModel
 import kotlin.math.roundToInt
 
 private val quickAddAmounts = listOf(100, 200, 300, 500)
 
+// 💡 HomeScreen-ს არ აქვს @Preview: მას სჭირდება რეალური AppContainer (Room ბაზა +
+// Context), რომელსაც Compose Preview-ს ტულინგი პირდაპირ ვერ უზრუნველყოფს.
+// ამის ნაცვლად ქვემოთ დამოუკიდებელი (stateless) ქვე-კომპონენტებია
+// (WaveContent, CelebrationBanner) preview-ებით — ამ პრინციპს ჰქვია
+// "state hoisting": UI-ლოგიკა გამოტანილია მონაცემებზე დამოკიდებულებისგან.
 @Composable
 fun HomeScreen(
     container: AppContainer,
@@ -203,5 +211,21 @@ private fun CelebrationBanner() {
                 color = MaterialTheme.colorScheme.onSecondaryContainer
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun WaveContentPreview() {
+    WaterTrackerTheme {
+        WaveContent(consumedMl = 6800, goalMl = 2000, percentage = 340)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun CelebrationBannerPreview() {
+    WaterTrackerTheme {
+        CelebrationBanner()
     }
 }

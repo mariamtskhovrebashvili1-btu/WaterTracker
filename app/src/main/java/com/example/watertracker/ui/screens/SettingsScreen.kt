@@ -1,4 +1,4 @@
-package com.example.watertracker.ui.settings
+package com.example.watertracker.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.watertracker.di.AppContainer
+import com.example.watertracker.vm.SettingsViewModel
 
 @Composable
 fun SettingsScreen(

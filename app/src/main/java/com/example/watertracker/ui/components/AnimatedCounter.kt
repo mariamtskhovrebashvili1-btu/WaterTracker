@@ -16,8 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
+import com.example.watertracker.ui.theme.WaterTrackerTheme
 
 /**
  * Animates [targetValue] towards its new value and renders it with [AutoResizeText] so the
@@ -84,4 +86,20 @@ fun AutoResizeText(
             }
         }
     )
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun AnimatedCounterPreview() {
+    WaterTrackerTheme {
+        AnimatedCounter(targetValue = 6800, suffix = " მლ")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun AutoResizeTextPreview() {
+    WaterTrackerTheme {
+        AutoResizeText(text = "მიზანი: 2000 მლ")
+    }
 }

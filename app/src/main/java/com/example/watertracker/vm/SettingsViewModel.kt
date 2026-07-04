@@ -1,4 +1,4 @@
-package com.example.watertracker.ui.settings
+package com.example.watertracker.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

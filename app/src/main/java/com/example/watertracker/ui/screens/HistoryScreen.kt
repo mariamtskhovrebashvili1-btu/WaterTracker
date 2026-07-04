@@ -1,4 +1,4 @@
-package com.example.watertracker.ui.history
+package com.example.watertracker.ui.screens
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.MutableTransitionState
@@ -41,6 +41,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.watertracker.data.DailyTotal
 import com.example.watertracker.data.WaterLog
 import com.example.watertracker.di.AppContainer
+import com.example.watertracker.vm.HistoryViewModel
 import com.example.watertracker.util.toDisplayDate
 import java.time.Instant
 import java.time.ZoneId
